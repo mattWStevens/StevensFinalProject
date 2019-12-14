@@ -15,7 +15,7 @@ d3.dsv(',', 'stop_information.csv', function(d) {
                 long: d3.max(stops, function(d) { return d.long; }),
                 count: d3.max(stops, function(d) { return d.count; })};
 
-    var colors = ["#1a0fdb","#ac07ed","#ed07ca", "#ed0739"];
+    var colors = ["#1a0fdb", "#ed0739","#ed07ca", "#f59342"];
 
     var colorScale = d3.scaleQuantile()
         .domain([0, d3.max(stops, function(d) { return d.count; })])
