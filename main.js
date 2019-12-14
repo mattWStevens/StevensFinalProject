@@ -98,4 +98,15 @@ d3.dsv(',', 'stop_information.csv', function(d) {
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth,window.innerHeight);
     }
+
+    function animate() {
+        requestAnimationFrame( animate );
+        camera.position.z += 5;
+
+        if (camera.position.z >= 2000)
+            camera.position.z = 400;
+
+        renderer.render( scene, camera );
+    }
+    animate();
 });
