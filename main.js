@@ -60,7 +60,7 @@ d3.dsv(',', 'stop_information.csv', function(d) {
             cylinder.position.set(
                 scale(stops[i].long, 'long', 1500, -1500),
                 scale(stops[i].count,'count', 3000, 0),
-                scale(stops[i].lat, 'lat', 200, -200)
+                scale(stops[i].lat, 'lat', 500, 0)
             );
 
             scene.add(cylinder);
