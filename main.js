@@ -68,7 +68,7 @@ d3.dsv(',', 'stop_information.csv', function(d) {
 
         for (var i = 0; i < stops.length; i++) {
             var c = colorScale(stops[i].count);
-            var geometry = new THREE.CylinderBufferGeometry(5, 5, 120, 32);
+            var geometry = new THREE.CylinderBufferGeometry(7, 7, 120, 132);
             var mesh_params = {color:c, emissive:c,
                 side:THREE.DoubleSide, flatShading:true};
             var material = new THREE.MeshPhongMaterial(mesh_params);
@@ -77,7 +77,7 @@ d3.dsv(',', 'stop_information.csv', function(d) {
             cylinder.position.set(
                 scale(stops[i].long, 'long', -1500, 1500),
                 scale(stops[i].count,'count', 0, 3000),
-                scale(stops[i].lat, 'lat', 0, 500)
+                scale(stops[i].lat, 'lat', 0, 700)
             );
 
             scene.add(cylinder);
