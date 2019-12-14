@@ -29,8 +29,8 @@ d3.dsv(',', 'stop_information.csv', function(d) {
     console.log("Maximum longitude: " + max["long"]);
 
     var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera( 140, window.innerWidth/window.innerHeight, 0.1, 10000 );
-    camera.position.set(0,4000,1150);
+    var camera = new THREE.PerspectiveCamera( 90, window.innerWidth/window.innerHeight, 0.1, 10000 );
+    camera.position.set(40,2900,400);
     camera.rotation.set(THREE.Math.degToRad(-65), 0, 0);
     var light = new THREE.PointLight(0xffffff,0.75,0);
     light.position.set(10,100,100);
@@ -66,9 +66,9 @@ d3.dsv(',', 'stop_information.csv', function(d) {
             var cylinder = new THREE.Mesh(geometry,material);
 
             cylinder.position.set(
-                scale(stops[i].long, 'long', 1500, -1500),
-                scale(stops[i].count,'count', 3000, 0),
-                scale(stops[i].lat, 'lat', 500, 0)
+                scale(stops[i].long, 'long', -1500, 1500),
+                scale(stops[i].count,'count', 0, 3000),
+                scale(stops[i].lat, 'lat', 0, 500)
             );
 
             scene.add(cylinder);
