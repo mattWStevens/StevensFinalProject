@@ -15,6 +15,14 @@ d3.dsv(',', 'stop_information.csv', function(d) {
                 long: d3.max(stops, function(d) { return d.long; }),
                 count: d3.max(stops, function(d) { return d.count; })};
 
+    var colors = ["#1a0fdb","#ac07ed","#ed07ca", "#ed0739"];
+
+    var colorScale = d3.scaleQuantile()
+        .domain([0, d3.max(stops, function(d) { return d.count; })])
+        .range(colors);
+
+    console.log(colorScale);
+
     console.log("Minimum latitude: " + min["lat"]);
     console.log("Minimum longitude: " + min["long"]);
     console.log("Maximum latitude: " + max["lat"]);
@@ -50,7 +58,7 @@ d3.dsv(',', 'stop_information.csv', function(d) {
         }
 
         for (var i = 0; i < stops.length; i++) {
-            var c = new THREE.Color(0x24C8C3);
+            var c = colorScale(stops[i].count);
             var geometry = new THREE.CylinderBufferGeometry(5, 5, 120, 32);
             var mesh_params = {color:c, emissive:c,
                 side:THREE.DoubleSide, flatShading:true};
