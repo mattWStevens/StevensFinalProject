@@ -96,6 +96,7 @@ d3.dsv(',', 'stop_information.csv', function(d) {
     renderer.render(scene,camera);
     document.body.appendChild(renderer.domElement);
     window.addEventListener('resize',onWindowResize,false);
+    document.addEventListener('keydown', setupControl, false);
     function onWindowResize(){
         camera.aspect = window.innerWidth/window.innerHeight;
         camera.updateProjectionMatrix();
@@ -134,5 +135,30 @@ d3.dsv(',', 'stop_information.csv', function(d) {
         camera.position.set(40,2900,400);
         camera.rotation.set(THREE.Math.degToRad(-65), 0, 0);
         renderer.render(scene, camera);
+    };
+
+    function setupControl() {
+        document.onkeydown = function(e) {
+            e.preventDefault();
+
+            switch (e.keyCode) {
+                case 37:
+                    camera.position.x -= 10;
+                    renderer.render(scene, camera);
+                    break;
+                case 38:
+                    camera.position.y -= 10;
+                    renderer.render(scene, camera);
+                    break;
+                case 39:
+                    camera.position.x += 10;
+                    renderer.render(scene, camera);
+                    break;
+                case 40:
+                    camera.position.y += 10;
+                    renderer.render(scene, camera);
+                    break;
+            }
+        }
     }
 });
