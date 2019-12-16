@@ -7,6 +7,7 @@ d3.dsv(',', 'stop_information.csv', function(d) {
 }).then(function(stops) {
     var animateEnabled = false;
     var aniButton = document.getElementById("animate");
+    var resetButton = document.getElementById("reset");
 
     console.log(stops);
 
@@ -127,4 +128,11 @@ d3.dsv(',', 'stop_information.csv', function(d) {
             animate();
         }
     };
+
+    resetButton.onclick = function() {
+        animateEnabled = false;
+        camera.position.set(40,2900,400);
+        camera.rotation.set(THREE.Math.degToRad(-65), 0, 0);
+        renderer.render(scene, camera);
+    }
 });
