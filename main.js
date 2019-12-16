@@ -5,6 +5,9 @@ d3.dsv(',', 'stop_information.csv', function(d) {
         count: +d.count
     }
 }).then(function(stops) {
+    var animateEnabled = false;
+    var aniButton = document.getElementById("animate");
+
     console.log(stops);
 
     var min = { lat: d3.min(stops, function(d) { return d.lat; }),
@@ -16,7 +19,6 @@ d3.dsv(',', 'stop_information.csv', function(d) {
                 count: d3.max(stops, function(d) { return d.count; })};
 
     var colors = ["#1a0fdb", "#ed0739","#ed07ca", "#76ff45"];
-    //colors = colors.reverse();
 
     var colorScale = d3.scaleQuantile()
         .domain([0, d3.max(stops, function(d) { return d.count; })])
@@ -100,13 +102,29 @@ d3.dsv(',', 'stop_information.csv', function(d) {
     }
 
     function animate() {
-        requestAnimationFrame( animate );
-        camera.position.z += 5;
+        if (animateEnabled) {
+            requestAnimationFrame(animate);
+            camera.position.z += 5;
+            camera.position.y += 5;
 
-        if (camera.position.z >= 2000)
-            camera.position.z = 400;
+            if (camera.position.z >= 2000)
+                camera.position.z = 400;
 
-        renderer.render( scene, camera );
+            if (camera.position.y >= 4500)
+                camera.position.y = 2900;
+
+            renderer.render(scene, camera);
+        }
     }
-    animate();
+
+    aniButton.onclick = function() {
+        if (animateEnabled) {
+            animateEnabled = false;
+            animate();
+        }
+        else {
+            animateEnabled = true;
+            animate();
+        }
+    };
 });
