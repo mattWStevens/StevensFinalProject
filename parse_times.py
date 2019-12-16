@@ -14,9 +14,9 @@ with open(stops_file) as f:
 
         stop_id = line_array[0]
         lat = line_array[3]
-        long = line_array[4]
+        lon = line_array[4]
 
-        info_array = [lat, long, 0]
+        info_array = [lat, lon, 0]
         stop_info[stop_id] = info_array
 
 with open(stop_times_file) as f:
